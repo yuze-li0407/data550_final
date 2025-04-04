@@ -1,0 +1,57 @@
+---
+title: "Sleep Health and Lifestyle Analysis"
+author: "Yuze Li"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+    theme: readable
+    highlight: tango
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+library(here)
+
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center",
+  fig.width = 7,
+  fig.height = 5
+)
+```
+
+# Introduction
+
+The Sleep Health and Lifestyle Dataset provides a comprehensive collection of data on sleep habits, lifestyle factors, and health metrics, encompassing 400 observations and 13 key variables. This dataset serves as a valuable resource for analyzing the intricate relationships between sleep quality, daily routines, and cardiovascular health. The dataset includes demographic information (such as gender and age), occupation, and several health-related indicators, including sleep duration, physical activity levels, stress levels, and BMI category. Additionally, it contains physiological metrics such as blood pressure, heart rate, and daily step counts, along with the presence or absence of common sleep disorders like insomnia and sleep apnea.
+
+This analysis aims to explore the relationship between BMI category and sleep duration. Specifically, it examines how different BMI categories (Underweight, Normal, Overweight) influence average sleep duration and its variability. By generating summary tables, visualizing sleep duration distribution, and comparing sleep duration across BMI groups using boxplots, the study seeks to identify potential patterns and associations between body weight status and sleep habits. These insights can help understand how weight status impacts sleep health and contribute to discussions on improving overall well-being.
+
+The original dataset is from [https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset](https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset)
+
+# Statistics of Sleep Duration
+
+```{r load-summary-table}
+summary_tbl <- readRDS(here("output", "sleep_summary.rds"))
+kable(summary_tbl, caption = "Summary of Sleep Duration by BMI")
+```
+
+The results indicate that individuals with a Normal BMI have an average sleep duration of 7.39 hours with a standard deviation of 0.72 hours, whereas those classified as Overweight sleep an average of 6.78 hours, with a standard deviation of 0.76 hours.
+
+This suggests that individuals with a Normal BMI tend to sleep longer on average compared to those who are Overweight. The slightly higher standard deviation in the Overweight group indicates more variability in sleep duration within that category. These findings may imply a potential relationship between BMI and sleep duration, where excess weight could be associated with shorter sleep duration, possibly due to health conditions like sleep apnea or lifestyle factors. Further analysis is needed to determine causation and consider other influencing variables.
+
+```{r load-boxplot}
+boxplot_fig <- readRDS(here("output", "sleep_boxplot.rds"))
+boxplot_fig
+```
+
+Individuals classified as Normal BMI tend to have a higher median sleep duration compared to those in the Overweight category. The interquartile range (IQR) for the Normal group is narrower, indicating less variability in sleep duration, whereas the Overweight group exhibits a wider spread, suggesting greater variation in sleep patterns. Additionally, the minimum and maximum whiskers show that some individuals in the Overweight category report significantly lower sleep durations.
+
+Overall, the plot supports the observation that individuals with a Normal BMI generally sleep longer on average compared to those classified as Overweight. This finding aligns with previous research suggesting that higher BMI may be linked to shorter sleep duration, possibly due to sleep disturbances or metabolic factors. Further analysis incorporating lifestyle habits and health conditions could provide deeper insights into these associations.
