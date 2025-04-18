@@ -17,6 +17,8 @@ project-folder/
 ├── report/
 │   └── Sleep_Analysis_Clean.Rmd             # RMarkdown report loading saved outputs
 └── README.md
+└── Makefile
+└── renv.lock
 ```
 
 ## How to Run
