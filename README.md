@@ -47,3 +47,9 @@ The final report will be saved as `Sleep_Analysis_Clean.html` inside the `report
 - This project uses the `here`, `tidyverse`, `ggplot2`, and `rmarkdown` packages.
 - Ensure your working directory is set at the project root when running scripts.
 
+## Setup Environment with renv
+
+To ensure reproducibility, this project uses the `renv` package to manage dependencies. Run the following command to install the required R packages:
+
+```bash
+make install
