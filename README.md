@@ -19,6 +19,8 @@ project-folder/
 └── README.md
 └── Makefile
 └── renv.lock
+└── Dockerfile
+
 ```
 
 ## How to Run
@@ -51,7 +53,41 @@ The final report will be saved as `Sleep_Analysis_Clean.html` inside the `report
 
 ## Setup Environment with renv
 
-To ensure reproducibility, this project uses the `renv` package to manage dependencies. Run the following command to install the required R packages:
+To ensure reproducibility, this project uses the `renv` package for dependency management. Install all required R packages by running:
 
 ```bash
 make install
+```
+
+---
+
+## Docker
+
+![Docker](https://img.shields.io/badge/docker-v2.5-blue)  
+[![DockerHub](https://img.shields.io/badge/docker--hub-available-brightgreen)](https://hub.docker.com/repositories/yuzeli0407)
+
+### 1. Build the image (local dev only)
+
+```bash
+docker build -t yuzeli0407/data550_final:latest .
+```
+
+### 2. Pull the image (from DockerHub)
+
+```bash
+docker pull yuzeli0407/data550_final:latest
+```
+
+### 3. Generate the report
+
+This will create (if needed) an empty `report/` folder in your project root, mount it into the container, and drop the compiled HTML there:
+
+```bash
+make docker-run
+```
+
+After it completes, open:
+
+```
+report/Sleep_Analysis_Clean.html
+```
